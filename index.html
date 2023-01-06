@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/glide.core.min.css" />
+    <link rel="stylesheet" href="css/glide.theme.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <title>Glide Carousel</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div id="glide-1" class="glide">
+          <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+              <li class="glide__slide">
+                <div class="card">card 1</div>
+              </li>
+              <li class="glide__slide">
+                <div class="card">card 2</div>
+              </li>
+              <li class="glide__slide">
+                <div class="card">card 3</div>
+              </li>
+              <li class="glide__slide">
+                <div class="card">card 4</div>
+              </li>
+            </ul>
+          </div>
+          <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+              prev
+            </button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+              next
+            </button>
+          </div>
+        </div>
+
+        <div id="glide-2" class="glide">
+          <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+              <li class="glide__slide">
+                <div class="card">card 1</div>
+              </li>
+              <li class="glide__slide">
+                <div class="card">card 2</div>
+              </li>
+              <li class="glide__slide">
+                <div class="card">card 3</div>
+              </li>
+              <li class="glide__slide">
+                <div class="card">card 4</div>
+              </li>
+            </ul>
+          </div>
+          <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+              prev
+            </button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+              next
+            </button>
+          </div>
+        </div>
+      </div>
+      <button class="update-button">Update</button>
+      <button class="reset-button">Reset</button>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script>
+      $(document).ready(function () {
+        const gliderOptions = {
+          type: "carousel",
+          perView: 3,
+          rewind: true,
+          animationDuration: 1000,
+          breakpoints: {
+            1000: {
+              perView: 2,
+            },
+            700: {
+              perView: 1,
+            },
+          },
+        };
+        const glideCarousel = new Glide("#glide-1", gliderOptions);
+        const glideCarousel2 = new Glide("#glide-2", gliderOptions);
+
+        $(document).on("click", ".update-button", () => {
+          $(".card").css("color", "red");
+          glideCarousel.update({
+            perView: 1,
+          });
+        });
+
+        $(document).on("click", ".reset-button", () => {
+          $(".card").css("color", "black");
+          glideCarousel.update({
+            perView: 3,
+          });
+        });
+        glideCarousel.mount();
+        glideCarousel2.mount();
+      });
+    </script>
+  </body>
+</html>
