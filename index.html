@@ -66,6 +66,33 @@
             </button>
           </div>
         </div>
+
+        <div id="glide-3" class="glide">
+          <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+              <li class="glide__slide">
+                <div class="card">card 1</div>
+              </li>
+              <li class="glide__slide">
+                <div class="card">card 2</div>
+              </li>
+              <li class="glide__slide">
+                <div class="card">card 3</div>
+              </li>
+              <li class="glide__slide">
+                <div class="card">card 4</div>
+              </li>
+            </ul>
+          </div>
+          <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+              prev
+            </button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+              next
+            </button>
+          </div>
+        </div>
       </div>
       <button class="update-button">Update</button>
       <button class="reset-button">Reset</button>
@@ -90,22 +117,34 @@
         };
         const glideCarousel = new Glide("#glide-1", gliderOptions);
         const glideCarousel2 = new Glide("#glide-2", gliderOptions);
+        const glideCarousel3 = new Glide("#glide-3", gliderOptions);
 
         $(document).on("click", ".update-button", () => {
-          $(".card").css("color", "red");
-          glideCarousel.update({
+          $(".card").addClass("red");
+          glideCarousel3.update({
             perView: 1,
           });
         });
 
         $(document).on("click", ".reset-button", () => {
-          $(".card").css("color", "black");
-          glideCarousel.update({
-            perView: 3,
-          });
+          $(".card").removeClass("red");
+          if (window.innerWidth > 1000) {
+            glideCarousel3.update({
+              perView: 3,
+            });
+          } else if (window.innerWidth < 1000 && window.innerWidth > 700) {
+            glideCarousel3.update({
+              perView: 2,
+            });
+          } else if (window.innerWidth < 700 && window.innerWidth > 400) {
+            glideCarousel3.update({
+              perView: 1,
+            });
+          }
         });
         glideCarousel.mount();
         glideCarousel2.mount();
+        glideCarousel3.mount();
       });
     </script>
   </body>

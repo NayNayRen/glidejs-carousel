@@ -13,6 +13,7 @@ body {
 .card {
   border: solid 1px #000;
   border-radius: 5px;
+  color: #000;
   height: 350px;
   width: 275px;
 }
@@ -60,7 +61,12 @@ main {
   height: auto;
   justify-content: center;
   margin: auto;
+  padding: 10px;
   width: 80%;
+}
+
+.red {
+  color: red;
 }
 
 .reset-button,
@@ -77,6 +83,10 @@ main {
 }
 
 @media (max-width: 400px) {
+  .container {
+    outline: none;
+  }
+
   main {
     width: 100%;
   }
